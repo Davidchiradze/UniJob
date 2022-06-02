@@ -1,22 +1,32 @@
-
-import './App.css';
-import React from 'react';
-import Header from './Components/Header'
-import Cartsection from './Components/Cartsection';
-import SignUp from './Components/Signup';
-import SignIn from './Components/Signin';
-import EmployeeProfile from './Components/EmployeeProfile';
-
+import "./App.css";
+import React from "react";
+import Header from "./Components/Header";
+import Cartsection from "./Components/Cartsection";
+import SignUp from "./Components/Signup";
+import SignIn from "./Components/Signin";
+import EmployeeProfile from "./Components/EmployeeProfile";
+import { Route } from "react-router-dom";
 function App() {
   return (
-   <React.Fragment>
-     {/* <Header/>
-     <Cartsection/> */}
+    <React.Fragment>
+      <Route exact path="/">
+        <Header />
+        <Cartsection />
+      </Route>
 
-     {/* <SignUp/>
+      <Route path={"/signup"}>
+        <SignUp />
+      </Route>
+      <Route path={"/signin"}>
+        <SignIn />
+      </Route>
+      {/* <SignUp/>
          <SignIn/> */}
-         <EmployeeProfile/>
-   </React.Fragment>
+      <Route path={"/employeeProfile"}>
+           <EmployeeProfile/>
+      </Route>
+       
+    </React.Fragment>
   );
 }
 

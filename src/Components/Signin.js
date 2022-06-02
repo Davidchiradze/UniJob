@@ -5,7 +5,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -98,14 +99,17 @@ export default function SignInSide() {
                 control={<Checkbox value="remember" color="primary" />}
                 label="დამახსვორება"
               />
+              <Link to='/employeeProfile'>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
+                
                 შესვლა
               </Button>
+              </Link>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
@@ -113,7 +117,7 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link to='/signup' variant="body2">
                     {"არ გაქვთ ანგარიში? რეგისტრაცია"}
                   </Link>
                 </Grid>
