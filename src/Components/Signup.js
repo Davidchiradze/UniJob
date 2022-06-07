@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -19,6 +20,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props) {
+
+
   return (  
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -34,14 +37,27 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+
+const [userInfo, setUserinfo] = useState({});
+const [choose,setChoose] = useState('')
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+
+    setUserinfo({
+      name: data.get('firstName'),
+      lastname: data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
+      choose: data.get('choose')
     });
   };
+  console.log(userInfo);
+  // const handleChoose =(e)=>{
+  //   setChoose(e.target.value)
+  // }
 
   return (
     <ThemeProvider theme={theme}>
@@ -72,6 +88,7 @@ export default function SignUp() {
                   id="firstName"
                   label="სახელი"
                   autoFocus
+                  // onChange={handleName}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -82,6 +99,7 @@ export default function SignUp() {
                   label="გვარი"
                   name="lastName"
                   autoComplete="family-name"
+                  // onChange={handleLastname}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -91,7 +109,9 @@ export default function SignUp() {
                   id="email"
                   label="მეილი"
                   name="email"
+                  type="email"
                   autoComplete="email"
+                  // onChange={handleMail}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -103,6 +123,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  // onChange={handlePassword}
                 />
               </Grid>
                   <Grid item xs={12}>
@@ -111,11 +132,12 @@ export default function SignUp() {
       <RadioGroup
         column
         aria-labelledby="demo-row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
+        name="choose"
+        // onChange={handleChoose}
       >
-        <FormControlLabel value="female" control={<Radio />} label="სამსახურის მაძიებელი" />
-        <FormControlLabel value="male" control={<Radio />} label="დამსაქმებელი" />
-        <FormControlLabel value="other" control={<Radio />} label="ტრენერი" />
+        <FormControlLabel value="madziebeli" control={<Radio />} label="სამსახურის მაძიებელი" />
+        <FormControlLabel value="damsaqmebeli" control={<Radio />} label="დამსაქმებელი" />
+        <FormControlLabel value="treneri" control={<Radio />} label="ტრენერი" />
       </RadioGroup>
     </FormControl>  
       </Grid>
@@ -131,6 +153,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+
             >
               რეგისტრაცია
             </Button>
