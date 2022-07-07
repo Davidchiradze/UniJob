@@ -71,7 +71,7 @@ const Education = () => {
           sx={{ width: "700px" }}
           hiddenLabel
           id="filled-hidden-label-normal"
-          label="ფაკულტეტის დასახელება"
+          label="პროგრამის დასახელება (სპეციალობა)"
           variant="outlined"
         />
       </Box>

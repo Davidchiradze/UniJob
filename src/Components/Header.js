@@ -2,7 +2,8 @@ import React from "react";
 import "./Header.scss";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-const Header = () => {
+const Header = ({texts}) => {
+  console.log(texts)
   return (
     <header>
       <div className="navigation">
@@ -11,12 +12,12 @@ const Header = () => {
           <div className="nav-buttons">
           <Link to='/signin'>
             <button className="btn sign-in">
-              Sign In <ion-icon name="log-in-outline"></ion-icon>
+              {texts.sign_in} <ion-icon name="log-in-outline"></ion-icon>
             </button>
           </Link>
           <Link to='/signup'>
             <button className="btn sign-up">
-              Sign Up <ion-icon name="person-add-outline"></ion-icon>
+              {texts.sign_up} <ion-icon name="person-add-outline"></ion-icon>
             </button>
             </Link>
           </div>
@@ -24,12 +25,13 @@ const Header = () => {
 
         <div className="hero-text-box">
           <h1>
-            Hire or become <br></br>the best freelancers for any job, online.
+          {texts.section_1_title}
+            {/* Hire or become <br></br>the best freelancers for any job, online. */}
           </h1>
           <a href="#carts" className="btn-full">
-            Get Started
+            {texts.get_started}
           </a>
-          <a className="btn-ghost">Show me more</a>
+          <a className="btn-ghost">{texts.show_me_more}</a>
         </div>
       </div>
     </header>

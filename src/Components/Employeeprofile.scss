@@ -1,0 +1,16 @@
+.navigation-navlinks {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px;
+  border-bottom: 1px solid #36475f;
+
+  .nav-li {
+    color: #36475f;
+  }
+  .active {
+    text-align: center;
+    border-bottom: 4px solid #36475f;
+  }
+}

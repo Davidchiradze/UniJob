@@ -4,6 +4,11 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import ProfileDetails from "./ProfileDetails";
+// import { NavLink, Route } from "react-router-dom";
+import Skills from "./Skills";
+import "./Employeeprofile.scss";
+import Experience from "./Experience";
+import Education from "./Education";
 
 const EmployeeProfile = () => {
   const [value, setValue] = React.useState(0);
@@ -18,14 +23,14 @@ const EmployeeProfile = () => {
         <Tabs value={value} onChange={handleChange} centered>
           <Tab label="Profile Details" sx={{ p: 5 }} />
           <Tab label="Experience" sx={{ p: 5 }} />
+          <Tab label="Education" sx={{ p: 5 }} />
           <Tab label="Skills" sx={{ p: 5 }} />
         </Tabs>
       </Box>
-      <Container>
-        {value === 0 && <ProfileDetails />}
-        {value === 1 && <div>Experience</div>}
-        {value === 2 && <div>Skills</div>}
-      </Container>
+      {value === 0 && <ProfileDetails />}
+      {value === 1 && <Experience />}
+      {value === 2 && <Education />}
+      {value === 3 && <Skills />}
     </Container>
   );
 };
