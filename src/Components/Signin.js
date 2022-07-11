@@ -61,9 +61,12 @@ export default function SignInSide({ setSigninResponse, signinResponse }) {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.data.choose);
         setSigninResponse(data);
-        data.status === "success" && history.push("/employeeProfile");
+        data.data.choose === 1 && history.push("/employeeProfile");
+        data.data.choose === 2 && history.push("/postajob");
+        data.data.choose === 3 && history.push("/trainer");
+        // (data.status === "success") && history.push("/employeeProfile");
       });
     // console.log(signinResponse);
   };

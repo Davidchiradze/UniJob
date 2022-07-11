@@ -66,7 +66,7 @@ export default function SignUp() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data.data);
-        data.data.choose === "1" && history.push("/jobslist");
+        data.data.choose === "1" && history.push("/employeeProfile");
         data.data.choose === "2" && history.push("/postajob");
         data.data.choose === "3" && history.push("/trainer");
       });
