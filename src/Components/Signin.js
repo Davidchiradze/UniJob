@@ -1,17 +1,22 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import { Redirect, Route } from "react-router-dom";
 // import Link from '@mui/material/Link';
 import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import { useHistory } from "react-router-dom";
+
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from "@mui/material/Typography";
+import Signup from "./Signup";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function Copyright(props) {
@@ -34,7 +39,9 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
+export default function SignInSide({ setSigninResponse, signinResponse }) {
+  let history = useHistory();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -42,7 +49,7 @@ export default function SignInSide() {
       email: data.get("email"),
       password: data.get("password"),
     };
-    console.log(userData);
+    // console.log(userData);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -53,7 +60,12 @@ export default function SignInSide() {
       requestOptions
     )
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        setSigninResponse(data);
+        data.status === "success" && history.push("/employeeProfile");
+      });
+    // console.log(signinResponse);
   };
 
   return (
@@ -118,20 +130,25 @@ export default function SignInSide() {
                 id="password"
                 autoComplete="current-password"
               />
+              <Grid item xs style={{ color: "red", fontSize: "14px" }}>
+                {signinResponse.status === "failure" &&
+                  "*" + signinResponse.message}
+              </Grid>
+
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="დამახსვორება"
               />
-              <Link to="/employeeProfile">
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  შესვლა
-                </Button>
-              </Link>
+              {/* <Link to="/employeeProfile"> */}
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                შესვლა
+              </Button>
+              {/* </Link> */}
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">

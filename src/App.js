@@ -7,8 +7,13 @@ import SignIn from "./Components/Signin";
 import EmployeeProfile from "./Components/EmployeeProfile";
 import { Route, BrowserRouter } from "react-router-dom";
 import { useEffect } from "react";
+import PostAJob from "./Components/PostAJob";
+import JobsList from "./Components/JobsList";
+import NotAuth from "./Components/NotAuth";
+import CvList from "./Components/CvList";
 function App() {
   const [texts, setTexts] = useState("");
+  const [signinResponse, setSigninResponse] = useState(false);
 
   const fetchData = async () => {
     const respone = await fetch(
@@ -18,10 +23,11 @@ function App() {
     setTexts(result.texts);
     return result.texts;
   };
+
   useEffect(() => {
     fetchData();
   }, []);
-
+  // console.log(signinResponse.status);
   return (
     <React.Fragment>
       <Route exact path="/">
@@ -34,11 +40,29 @@ function App() {
       </Route>
 
       <Route path={"/signin"}>
-        <SignIn />
+        <SignIn
+          setSigninResponse={setSigninResponse}
+          signinResponse={signinResponse}
+        />
       </Route>
 
-      <Route path={"/employeeProfile"}>
-        <EmployeeProfile />
+      {signinResponse.status === "success" && (
+        <Route path={"/employeeProfile"}>
+          <EmployeeProfile />
+        </Route>
+      )}
+
+      <Route path={"/postajob"}>
+        <PostAJob />
+      </Route>
+      <Route path={"/cvlist"}>
+        <CvList />
+      </Route>
+      <Route path={"/trainer"}>
+        <div>Coming soon !</div>
+      </Route>
+      <Route path={"/jobslist"}>
+        <JobsList />
       </Route>
     </React.Fragment>
   );

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { Container } from "@mui/system";
 
-export const Skills = () => {
+export const Skills = (props) => {
+  const Languages = props.Languages;
+  const defaultLanguages = Languages.find((item) => item.id === "ka");
+  console.log(defaultLanguages);
   return (
     <React.Fragment>
       <Container style={{ width: "50%" }}>
@@ -35,6 +38,7 @@ export const Skills = () => {
             multiple
             id="tags-outlined"
             options={Languages}
+            defaultValue={[defaultLanguages]}
             getOptionLabel={(option) => option.title}
             filterSelectedOptions
             renderInput={(params) => (
@@ -62,9 +66,4 @@ const All_Skills = [
   { title: "SQL", id: 1 },
 ];
 
-const Languages = [
-  { title: "ქართული", id: 1 },
-  { title: "ინგლისური", id: 1 },
-  { title: "რუსული", id: 1 },
-];
 export default Skills;

@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 // import Link from '@mui/material/Link';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Radio from "@mui/material/Radio";
@@ -41,6 +41,7 @@ const theme = createTheme();
 
 export default function SignUp() {
   const [userInfo, setUserinfo] = useState({});
+  let history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -63,7 +64,12 @@ export default function SignUp() {
       requestOptions
     )
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data.data);
+        data.data.choose === "1" && history.push("/jobslist");
+        data.data.choose === "2" && history.push("/postajob");
+        data.data.choose === "3" && history.push("/trainer");
+      });
   };
 
   console.log(userInfo);
@@ -155,17 +161,17 @@ export default function SignUp() {
                     // onChange={handleChoose}
                   >
                     <FormControlLabel
-                      value="madziebeli"
+                      value="1"
                       control={<Radio />}
                       label="სამსახურის მაძიებელი"
                     />
                     <FormControlLabel
-                      value="damsaqmebeli"
+                      value="2"
                       control={<Radio />}
                       label="დამსაქმებელი"
                     />
                     <FormControlLabel
-                      value="treneri"
+                      value="3"
                       control={<Radio />}
                       label="ტრენერი"
                     />
