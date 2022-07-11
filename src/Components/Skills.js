@@ -6,6 +6,7 @@ import { Container } from "@mui/system";
 
 export const Skills = (props) => {
   const Languages = props.Languages;
+  const Skills = props.Skills;
   const defaultLanguages = Languages.find((item) => item.id === "ka");
   console.log(defaultLanguages);
   return (
@@ -18,7 +19,7 @@ export const Skills = (props) => {
           <Autocomplete
             multiple
             id="tags-outlined"
-            options={All_Skills}
+            options={props.SkillsList}
             getOptionLabel={(option) => option.title}
             filterSelectedOptions
             renderInput={(params) => (

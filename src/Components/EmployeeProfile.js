@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 const EmployeeProfile = () => {
   const [value, setValue] = React.useState(0);
   const [Languages, setLanguages] = useState([]);
+  const [SkillsList, setSkillsList] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -27,8 +28,17 @@ const EmployeeProfile = () => {
     setLanguages(result.list);
     console.log(result.list);
   };
+  const fetchSkills = async () => {
+    const response = await fetch(
+      `http://78.47.50.12/jofy/api/skills?key=sXuWClO2NvVYNGG9psuXHM924rOT7qIf`
+    );
+    const result = await response.json();
+    setSkillsList(result.list);
+    console.log(result.list);
+  };
   useEffect(() => {
     fetchLanguages();
+    fetchSkills();
   }, []);
   return (
     <React.Fragment>
@@ -47,7 +57,9 @@ const EmployeeProfile = () => {
         {value === 0 && <ProfileDetails />}
         {value === 1 && <Experience />}
         {value === 2 && <Education />}
-        {value === 3 && <Skills Languages={Languages} />}
+        {value === 3 && (
+          <Skills SkillsList={SkillsList} Languages={Languages} />
+        )}
       </Container>
     </React.Fragment>
   );
